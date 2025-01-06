@@ -18,6 +18,7 @@ void Calculate(string formula) {
     Dictionary<int, List<int>> yKeyWithListOfAssociatedX = GroupCoordinatesByY(coordinates);
     #endregion
 
+
     //from 15 to 0.
     for (int i = matrixLengthConfig - 1; i >= 0; i--) {
         if (i == 0) {
