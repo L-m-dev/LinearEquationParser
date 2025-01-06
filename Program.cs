@@ -13,26 +13,21 @@ void Calculate(string formula) {
     Dictionary<int, int> coordinates = ApplyFunction(formula);
 
     #region
-    //creating a dict with Y as keys and a  list of X values
-    //various X values are associated with a single Y
+    //Creating a dict with Y as keys and a  list of X values
+    //Various X values are associated with a single Y
     Dictionary<int, List<int>> yKeyWithListOfAssociatedX = GroupCoordinatesByY(coordinates);
     #endregion
 
-
-    //from 15 to 0.
     for (int i = matrixLengthConfig - 1; i >= 0; i--) {
         if (i == 0) {
             for (int j = 0; j < matrixLengthConfig; j++) {
-
                 Console.Write(j.ToString().PadLeft(2, '0'));
                 for (int k = 1; k > 0; k--) {
                     Console.Write(" ");
                 }
-               
             }
             Console.WriteLine(); 
             Console.WriteLine();
-
             break;
         }
 
@@ -50,7 +45,6 @@ void Calculate(string formula) {
                     continue;
                 }
                 else {
-
                     if (!printedNumberLineItem) {
                         Console.Write(i.ToString().PadLeft(2, '0'));
                         printedNumberLineItem = true;
@@ -64,7 +58,6 @@ void Calculate(string formula) {
             }
             Console.WriteLine();
         }
-
         else {
             Console.WriteLine(i.ToString().PadLeft(2, '0'));
         }
@@ -108,7 +101,6 @@ void DrawEmptyBlocksChar(int length, char character) {
 }
 
 Dictionary<int, int> ApplyFunction(string args) {
-    // x = y
     List<string> parsedArguments = Parser(args);
 
     Console.WriteLine($"Equation: y = {parsedArguments[1]}x {parsedArguments[0]} {parsedArguments[2]}");
@@ -142,17 +134,9 @@ static List<string> Parser(string args) {
 
     if (!Int32.TryParse(args.Substring(0, xIndex), out int argA)) {
         throw new ArgumentException("Error: Invalid argument A.");
-
     }
     if (!Int32.TryParse(args.Substring(operationIndex + 1, args.Length - operationIndex - 1), out int argB)) {
         throw new ArgumentException("Error: Invalid argument B.");
     }
-
     return new List<string> { operation, argA.ToString(), argB.ToString() };
 }
-
-//int GetNumber() {
-//    return 3;
-//}
-
-//Assert.AreEqual(5, GetNumber());
