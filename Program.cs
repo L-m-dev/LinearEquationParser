@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
 
-int matrixLengthConfig = 32;
+int matrixLengthConfig = 16;
 int numberWidthConfig = 2;
 
-Calculate("1+5");
-Calculate("4+2");
-Calculate("0+1");
-Calculate("4-3");
+Calculate("1x+5");
+Calculate("3x-5");
+Calculate("1x+2");
 
 void Calculate(string formula) {
 
@@ -30,7 +29,9 @@ void Calculate(string formula) {
                 }
                
             }
+            Console.WriteLine(); 
             Console.WriteLine();
+
             break;
         }
 
@@ -109,6 +110,8 @@ Dictionary<int, int> ApplyFunction(string args) {
     // x = y
     List<string> parsedArguments = Parser(args);
 
+    Console.WriteLine($"Equation: y = {parsedArguments[1]}x {parsedArguments[0]} {parsedArguments[2]}");
+
     Dictionary<int, int> coordinates = new();
     int argA = Int32.Parse(parsedArguments[1]);
     int argB = Int32.Parse(parsedArguments[2]);
@@ -134,7 +137,9 @@ static List<string> Parser(string args) {
             args);
     }
     string operation = args.Substring(operationIndex, 1);
-    if (!Int32.TryParse(args.Substring(0, operationIndex), out int argA)) {
+    int xIndex = args.IndexOf("x");
+
+    if (!Int32.TryParse(args.Substring(0, xIndex), out int argA)) {
         throw new ArgumentException("Error: Invalid argument A.");
 
     }
